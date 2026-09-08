@@ -1,0 +1,19 @@
+# Virtual environment -- hundreds of MB, and machine-specific. Anyone cloning
+# this recreates it with: python -m venv .venv && pip install -e ".[dev]"
+.venv/
+
+# Downloaded price data. Regenerated on first run; not source.
+data_cache/
+
+# Generated charts and report. The notebook carries embedded copies for anyone
+# browsing on GitHub, so the repo still shows its output without these.
+output/
+
+# Python build and test artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/

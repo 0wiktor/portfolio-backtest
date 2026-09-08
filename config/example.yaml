@@ -1,0 +1,41 @@
+# Example backtest configuration.
+#
+# Every run parameter lives here so that a result can be reproduced from this
+# file alone. Units are stated on each key because that is where they get
+# misread.
+
+# Portfolio holdings. US sector ETFs: same asset class as the benchmark, so
+# beta, alpha, tracking error and information ratio stay interpretable.
+tickers:
+  - XLK   # Technology
+  - XLF   # Financials
+  - XLE   # Energy
+  - XLV   # Health Care
+  - XLU   # Utilities
+
+benchmark: SPY          # single ticker; defaults to SPY if omitted
+
+start: 2015-01-01       # inclusive
+end: 2024-12-31         # inclusive
+
+initial_capital: 100000 # currency units, matching the price data (USD here)
+
+# equal | custom | inverse_vol
+weighting: inverse_vol
+
+# Required only when weighting is "custom". Must sum to 1.0 and align
+# positionally with `tickers`.
+# custom_weights: [0.30, 0.20, 0.15, 0.20, 0.15]
+
+# Trading days of trailing history used to estimate volatility for the
+# inverse_vol scheme. Required only when weighting is "inverse_vol".
+# 63 trading days is roughly one quarter.
+lookback_days: 63
+
+# none | monthly | quarterly | annual
+# Rebalances execute on the last actual trading day of each period.
+rebalance: quarterly
+
+risk_free_rate: 0.02    # ANNUAL decimal, not percent. 0.02 means 2% a year.
+
+transaction_cost_bps: 5 # basis points charged on turnover at each rebalance

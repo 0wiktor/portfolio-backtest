@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "portfolio-backtest"
+version = "0.1.0"
+description = "A small, reproducible equity portfolio backtester."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+# Runtime dependencies are deliberately minimal. Anything not on this list is a
+# scope decision, not an implementation detail, so it gets discussed first.
+dependencies = [
+    "pandas",
+    "numpy",
+    "yfinance",
+    "matplotlib",
+    "pyyaml",
+    "scipy",
+    "pyarrow",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+pbt = "pbt.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pbt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
